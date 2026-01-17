@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo2 from '../../assets/logo2.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,34 +30,30 @@ const Navbar = () => {
             path: '/services',
             dropdown: [
                 { name: 'Enterprise Solutions', path: '/services#enterprise' },
-                { name: 'Manufacturing', path: '/services#manufacturing' },
+                { name: 'Fintech', path: '/services#finance' },
                 { name: 'Retail & E-Commerce', path: '/services#retail' },
-                { name: 'Education', path: '/services#education' },
-                { name: 'Media', path: '/services#media' },
-                { name: 'Travel', path: '/services#travel' },
+                { name: 'Manufacturing & IoT', path: '/services#manufacturing' },
+                { name: 'Cloud Computing', path: '/services#cloud' },
+                { name: 'Cybersecurity', path: '/services#cybersecurity' },
             ]
         },
         { name: 'Mission', path: '/mission' },
         // { name: 'Testimonials', path: '/testimonials' }, // Using dropdown or section might be better if space is tight
-        { name: 'Global Clients', path: '/global-clients' },
-        { name: 'Contact', path: '/contact' },
     ];
 
     return (
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${scrolled
-                    ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg py-4'
-                    : 'bg-transparent py-6'
+                ? 'bg-white/90 backdrop-blur-md shadow-sm py-2'
+                : 'bg-transparent py-4'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center space-x-2">
-                        <Globe className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                        <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
-                            Infra Tech
-                        </span>
+                    <Link to="/" className="flex items-center gap-2">
+                        <img src={logo2} alt="Infra Tech Solution" className="h-[4rem] w-auto" />
+                        <span className="text-2xl font-bold bg-gradient-to-r from-sky-500 to-green-500 bg-clip-text text-transparent">Infra Tech</span>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -65,7 +62,7 @@ const Navbar = () => {
                             <div key={link.name} className="relative group">
                                 <Link
                                     to={link.path}
-                                    className="text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors flex items-center"
+                                    className="text-slate-700 hover:text-sky-500 font-medium transition-colors flex items-center"
                                 >
                                     {link.name}
                                     {link.dropdown && <ChevronDown className="ml-1 h-4 w-4" />}
@@ -94,7 +91,7 @@ const Navbar = () => {
                             to="/contact"
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-colors shadow-lg shadow-blue-500/30"
                         >
-                            Get Quote
+                            Book A Call
                         </Link>
                     </div>
 
@@ -102,7 +99,7 @@ const Navbar = () => {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-slate-700 dark:text-slate-200 hover:text-blue-600 focus:outline-none"
+                            className="text-slate-700 hover:text-sky-600 focus:outline-none"
                         >
                             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </button>
@@ -147,7 +144,7 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </nav >
     );
 };
 

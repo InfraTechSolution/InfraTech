@@ -52,7 +52,7 @@ export default function Testimonials() {
 
     return (
         <>
-            <div className="bg-slate-900 text-white pt-32 pb-20">
+            <div className="bg-white text-slate-900 pt-32 pb-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -61,22 +61,22 @@ export default function Testimonials() {
                     >
                         Client Success Stories
                     </motion.h1>
-                    <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                         Hear from global leaders who trust us with their technology.
                     </p>
                 </div>
             </div>
 
-            <Section className="bg-white dark:bg-slate-900">
+            <Section className="bg-white">
                 {/* Carousel */}
                 <div className="max-w-4xl mx-auto relative mb-20">
                     <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-10">
-                        <button onClick={prevSlide} className="p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        <button onClick={prevSlide} className="p-3 rounded-full bg-white shadow-lg text-slate-600 hover:text-sky-600 transition-colors border border-slate-100">
                             <ChevronLeft className="w-6 h-6" />
                         </button>
                     </div>
                     <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-10">
-                        <button onClick={nextSlide} className="p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        <button onClick={nextSlide} className="p-3 rounded-full bg-white shadow-lg text-slate-600 hover:text-sky-600 transition-colors border border-slate-100">
                             <ChevronRight className="w-6 h-6" />
                         </button>
                     </div>
@@ -90,9 +90,9 @@ export default function Testimonials() {
                                 exit={{ opacity: 0, x: -50 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <Card className="text-center p-8 md:p-12 border-blue-100 dark:border-slate-700 shadow-2xl">
-                                    <Quote className="w-12 h-12 text-blue-200 mx-auto mb-6" />
-                                    <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 italic mb-8 leading-relaxed">
+                                <Card className="text-center p-8 md:p-12 border-sky-100 shadow-2xl bg-white">
+                                    <Quote className="w-12 h-12 text-sky-200 mx-auto mb-6" />
+                                    <p className="text-xl md:text-2xl text-slate-700 italic mb-8 leading-relaxed">
                                         "{testimonials[currentIndex].content}"
                                     </p>
 
@@ -109,9 +109,9 @@ export default function Testimonials() {
                                         <img
                                             src={testimonials[currentIndex].image}
                                             alt={testimonials[currentIndex].name}
-                                            className="w-16 h-16 rounded-full object-cover mb-4 border-2 border-blue-500"
+                                            className="w-16 h-16 rounded-full object-cover mb-4 border-2 border-sky-500"
                                         />
-                                        <h4 className="text-lg font-bold text-slate-900 dark:text-white">{testimonials[currentIndex].name}</h4>
+                                        <h4 className="text-lg font-bold text-slate-900">{testimonials[currentIndex].name}</h4>
                                         <p className="text-slate-500">{testimonials[currentIndex].role}</p>
                                     </div>
                                 </Card>
@@ -124,7 +124,7 @@ export default function Testimonials() {
                             <button
                                 key={idx}
                                 onClick={() => setCurrentIndex(idx)}
-                                className={`w-3 h-3 rounded-full transition-colors ${idx === currentIndex ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'
+                                className={`w-3 h-3 rounded-full transition-colors ${idx === currentIndex ? 'bg-sky-600' : 'bg-slate-300'
                                     }`}
                             />
                         ))}
@@ -137,7 +137,7 @@ export default function Testimonials() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60">
                         {['Google', 'Microsoft', 'Amazon', 'Spotify'].map((logo, i) => (
                             <div key={i} className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                                <span className="text-2xl font-bold text-slate-400 hover:text-blue-600 cursor-default">{logo}</span>
+                                <span className="text-2xl font-bold text-slate-400 hover:text-sky-600 cursor-default">{logo}</span>
                             </div>
                         ))}
                     </div>

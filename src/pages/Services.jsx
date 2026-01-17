@@ -73,7 +73,7 @@ export default function Services() {
 
     return (
         <>
-            <div className="bg-slate-900 text-white pt-32 pb-20">
+            <div className="bg-white text-slate-900 pt-32 pb-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -82,24 +82,24 @@ export default function Services() {
                     >
                         Our Services
                     </motion.h1>
-                    <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                         End-to-end technology solutions tailored for your industry.
                     </p>
                 </div>
             </div>
 
-            <Section className="bg-white dark:bg-slate-900 min-h-screen">
+            <Section className="bg-sky-50/30 min-h-screen">
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar Navigation */}
                     <div className="lg:w-1/4">
-                        <div className="sticky top-24 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 overflow-hidden">
+                        <div className="sticky top-24 bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
                                     onClick={() => setActiveTab(cat.id)}
                                     className={`w-full text-left px-6 py-4 flex items-center space-x-3 transition-colors border-l-4 ${activeTab === cat.id
-                                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 border-blue-600 font-medium'
-                                        : 'text-slate-600 dark:text-slate-400 border-transparent hover:bg-slate-50 dark:hover:bg-slate-700'
+                                        ? 'bg-sky-50 text-sky-600 border-sky-600 font-medium'
+                                        : 'text-slate-600 border-transparent hover:bg-sky-50'
                                         }`}
                                 >
                                     {cat.icon}
@@ -120,22 +120,22 @@ export default function Services() {
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className="mb-8">
-                                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                                    <h2 className="text-3xl font-bold text-slate-900 mb-4">
                                         {categories.find(c => c.id === activeTab)?.name}
                                     </h2>
-                                    <p className="text-slate-600 dark:text-slate-400">
+                                    <p className="text-slate-600">
                                         Comprehensive {categories.find(c => c.id === activeTab)?.name.toLowerCase()} tailored to drive efficiency and innovation.
                                     </p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {servicesData[activeTab].map((service, idx) => (
-                                        <Card key={idx} className="hover:border-blue-500/50 transition-colors">
-                                            <div className="bg-blue-100 dark:bg-slate-700 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                                        <Card key={idx} className="hover:border-sky-500/50 transition-colors bg-white">
+                                            <div className="bg-sky-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-sky-600">
                                                 {service.icon}
                                             </div>
-                                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{service.title}</h3>
-                                            <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm leading-relaxed">
+                                            <h3 className="text-xl font-bold text-slate-900 mb-2">{service.title}</h3>
+                                            <p className="text-slate-600 mb-4 text-sm leading-relaxed">
                                                 {service.desc}
                                             </p>
                                             <Button variant="ghost" className="!px-0 !py-0 text-sm">
@@ -145,8 +145,8 @@ export default function Services() {
                                     ))}
                                 </div>
 
-                                <div className="mt-12 bg-slate-900 rounded-2xl p-8 text-center relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                                <div className="mt-12 bg-sky-600 rounded-2xl p-8 text-center relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
                                     <h3 className="text-2xl font-bold text-white mb-4 relative z-10">Need a custom solution?</h3>
                                     <p className="text-slate-300 mb-8 max-w-2xl mx-auto relative z-10">
                                         We understand that every business is unique. Contact our experts to discuss your specific requirements.

@@ -20,7 +20,7 @@ export default function GlobalClients() {
 
     return (
         <>
-            <div className="bg-slate-900 text-white pt-32 pb-20">
+            <div className="bg-white text-slate-900 pt-32 pb-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -29,15 +29,15 @@ export default function GlobalClients() {
                     >
                         Global Highlights
                     </motion.h1>
-                    <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                         Trusted by industry leaders across India, Australia, and the UK.
                     </p>
                 </div>
             </div>
 
-            <Section className="bg-white dark:bg-slate-900">
+            <Section className="bg-white">
                 <div className="max-w-5xl mx-auto mb-16">
-                    <div className="bg-slate-100 dark:bg-slate-800 rounded-3xl p-4 aspect-[2/1] relative overflow-hidden flex items-center justify-center">
+                    <div className="bg-sky-50 rounded-3xl p-4 aspect-[2/1] relative overflow-hidden flex items-center justify-center">
                         {/* Abstract Map Representation */}
                         <div className="absolute inset-0 opacity-20 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-contain bg-no-repeat bg-center"></div>
 
@@ -46,8 +46,8 @@ export default function GlobalClients() {
                             initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5 }}
                             className="absolute top-[40%] left-[72%] group cursor-pointer" // India Approx
                         >
-                            <div className="w-4 h-4 bg-blue-600 rounded-full animate-ping absolute"></div>
-                            <div className="w-4 h-4 bg-blue-600 rounded-full relative z-10 border-2 border-white"></div>
+                            <div className="w-4 h-4 bg-sky-500 rounded-full animate-ping absolute"></div>
+                            <div className="w-4 h-4 bg-sky-500 rounded-full relative z-10 border-2 border-white"></div>
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">India (HQ)</div>
                         </motion.div>
 
@@ -55,7 +55,7 @@ export default function GlobalClients() {
                             initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.7 }}
                             className="absolute top-[25%] left-[48%] group cursor-pointer" // UK Approx
                         >
-                            <div className="w-3 h-3 bg-blue-500 rounded-full relative z-10 border-2 border-white"></div>
+                            <div className="w-3 h-3 bg-sky-500 rounded-full relative z-10 border-2 border-white"></div>
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">United Kingdom</div>
                         </motion.div>
 
@@ -63,11 +63,11 @@ export default function GlobalClients() {
                             initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.9 }}
                             className="absolute bottom-[20%] right-[10%] group cursor-pointer" // Australia Approx
                         >
-                            <div className="w-3 h-3 bg-blue-500 rounded-full relative z-10 border-2 border-white"></div>
+                            <div className="w-3 h-3 bg-sky-500 rounded-full relative z-10 border-2 border-white"></div>
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Australia</div>
                         </motion.div>
 
-                        <p className="relative z-10 text-slate-500 dark:text-slate-400 font-medium">Interactive Presence Map</p>
+                        <p className="relative z-10 text-sky-400 font-medium">Interactive Presence Map</p>
                     </div>
                 </div>
 
@@ -77,8 +77,8 @@ export default function GlobalClients() {
                             key={region}
                             onClick={() => setFilter(region)}
                             className={`px-6 py-2 rounded-full font-medium transition-all ${filter === region
-                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                                ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30'
+                                : 'bg-sky-50 text-slate-600 hover:bg-sky-100'
                                 }`}
                         >
                             {region}
@@ -96,12 +96,12 @@ export default function GlobalClients() {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 layout
                             >
-                                <Card className="flex items-center space-x-4 hover:border-blue-500/50">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 rounded-full flex items-center justify-center font-bold text-slate-500 dark:text-slate-300 text-xl">
+                                <Card className="flex items-center space-x-4 hover:border-sky-500/50">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-sky-50 to-sky-100 rounded-full flex items-center justify-center font-bold text-sky-500 text-xl">
                                         {client.logo}
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-lg text-slate-900 dark:text-white">{client.name}</h3>
+                                        <h3 className="font-bold text-lg text-slate-900">{client.name}</h3>
                                         <div className="flex items-center text-sm text-slate-500">
                                             <MapPin className="w-3 h-3 mr-1" />
                                             {client.city}, {client.country}

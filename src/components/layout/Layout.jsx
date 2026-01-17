@@ -5,7 +5,7 @@ import ScrollToTop from './ScrollToTop';
 
 const Layout = () => {
     return (
-        <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900 overflow-x-hidden">
+        <div className="min-h-screen flex flex-col bg-slate-50 overflow-x-hidden">
             <ScrollToTop />
             <Navbar />
             <main className="flex-grow pt-20">

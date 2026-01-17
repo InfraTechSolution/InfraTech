@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0f172a", // Slate 900
-        secondary: "#1e293b", // Slate 800
-        accent: "#3b82f6", // Blue 500
+        primary: "#0ea5e9", // Sky 500
+        secondary: "#0284c7", // Sky 600
+        accent: "#38bdf8", // Sky 400
       },
     },
   },
