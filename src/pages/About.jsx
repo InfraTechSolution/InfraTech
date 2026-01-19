@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import { Target, Users, Globe, Award, Briefcase } from 'lucide-react';
+import LazyImage from '../components/ui/LazyImage';
 
 export default function About() {
     return (
@@ -65,7 +66,7 @@ export default function About() {
                     </div>
 
                     <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                        <img
+                        <LazyImage
                             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                             alt="Team collaboration"
                             className="absolute inset-0 w-full h-full object-cover"

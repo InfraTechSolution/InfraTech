@@ -3,7 +3,8 @@ import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import mapLocation from '../assets/map_location.jpg';
+import mapLocation from '../assets/map_location.webp';
+import LazyImage from '../components/ui/LazyImage';
 
 export default function Contact() {
     const handleSubmit = (e) => {
@@ -15,52 +16,6 @@ export default function Contact() {
         <>
             <Section id="contact" className="bg-white md:py-0 relative overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Contact Info & Map */}
-                    <div className="space-y-8">
-                        <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 relative bg-slate-100 flex items-center justify-center">
-                            <img src={mapLocation} alt="Office Location Map" className="w-full h-full object-cover" />
-                        </div>
-
-                        <Card className="p-8 bg-white border border-slate-100 shadow-lg">
-                            <h3 className="text-xl font-bold text-slate-900 mb-6">Contact Information</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
-                                        <MapPin className="h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium text-slate-900">Headquarters</h4>
-                                        <p className="text-slate-600 mt-1">
-                                            Tech Park, Hinjewadi Phase 1,<br />
-                                            Pune, Maharashtra 411057, India
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
-                                        <Phone className="h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium text-slate-900">Phone</h4>
-                                        <p className="text-slate-600 mt-1">+91 20 1234 5678</p>
-                                        <p className="text-slate-500 text-sm mt-1">Mon-Fri, 9am - 6pm IST</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
-                                        <Mail className="h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium text-slate-900">Email</h4>
-                                        <p className="text-slate-600 mt-1">contactus@infratech-solution.com</p>
-                                        <p className="text-slate-600">careers@infratech.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
 
                     {/* Contact Form */}
                     <Card className="p-8 bg-white border border-slate-100 shadow-lg">
@@ -104,6 +59,52 @@ export default function Contact() {
                             </Button>
                         </form>
                     </Card>
+                    {/* Contact Info & Map */}
+                    <div className="space-y-8">
+                        <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 relative bg-slate-100 flex items-center justify-center">
+                            <LazyImage src={mapLocation} alt="Office Location Map" className="w-full h-full object-cover" />
+                        </div>
+
+                        <Card className="p-8 bg-white border border-slate-100 shadow-lg">
+                            <h3 className="text-xl font-bold text-slate-900 mb-6">Contact Information</h3>
+                            <div className="space-y-6">
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
+                                        <MapPin className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-900">Headquarters</h4>
+                                        <p className="text-slate-600 mt-1">
+                                            Tech Park, Hinjewadi Phase 1,<br />
+                                            Pune, Maharashtra 411057, India
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
+                                        <Phone className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-900">Phone</h4>
+                                        <p className="text-slate-600 mt-1">+91 20 1234 5678</p>
+                                        <p className="text-slate-500 text-sm mt-1">Mon-Fri, 9am - 6pm IST</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start space-x-4">
+                                    <div className="bg-sky-50 p-3 rounded-lg text-sky-600">
+                                        <Mail className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-900">Email</h4>
+                                        <p className="text-slate-600 mt-1">contactus@infratech-solution.com</p>
+                                        <p className="text-slate-600">careers@infratech.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
             </Section>
         </>

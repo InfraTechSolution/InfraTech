@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo2 from '../../assets/logo2.png';
+import logo2 from '../../assets/logo2.webp';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +52,7 @@ const Navbar = () => {
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-2">
-                        <img src={logo2} alt="Infra Tech Solution" className="h-[4rem] w-auto" />
+                        <img src={logo2} alt="Infra Tech Solution" className="h-[4rem] w-auto" loading="lazy" />
                         <span className="text-2xl font-bold bg-gradient-to-r from-sky-500 to-green-500 bg-clip-text text-transparent">Infra Tech</span>
                     </Link>
 

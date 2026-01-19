@@ -24,7 +24,7 @@ export default function Home() {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative flex items-center pt-10 pb-24 overflow-hidden bg-white">
+            <section className="relative flex items-center pt-16 pb-24 overflow-hidden bg-white">
                 {/* Background Gradients */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
                     <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[100px]" />
@@ -195,9 +195,8 @@ export default function Home() {
                 </div>
             </Section>
 
-            {/* CTA Section */}
-            <section className="py-12 bg-sky-600 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <section className="py-16 bg-sky-600 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
                 <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
                     <p className="text-xl text-sky-100 mb-10 max-w-2xl mx-auto">

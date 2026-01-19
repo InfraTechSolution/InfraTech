@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Globe } from 'lucide-react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.webp';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -12,7 +12,7 @@ const Footer = () => {
                     {/* Company Info */}
                     <div className="space-y-4">
                         <Link to="/" className="flex items-center mb-4">
-                            <img src={logo} alt="Infra Tech Solution" className="h-20 w-auto" />
+                            <img src={logo} alt="Infra Tech Solution" className="h-20 w-auto" loading="lazy" />
                         </Link>
                         <p className="text-slate-400 text-sm leading-relaxed">
                             Global IT consulting firm delivering scalable digital solutions.

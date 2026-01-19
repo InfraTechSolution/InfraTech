@@ -3,6 +3,7 @@ import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LazyImage from '../components/ui/LazyImage';
 
 const testimonials = [
     {
@@ -106,7 +107,7 @@ export default function Testimonials() {
                                     </div>
 
                                     <div className="flex flex-col items-center">
-                                        <img
+                                        <LazyImage
                                             src={testimonials[currentIndex].image}
                                             alt={testimonials[currentIndex].name}
                                             className="w-16 h-16 rounded-full object-cover mb-4 border-2 border-sky-500"
