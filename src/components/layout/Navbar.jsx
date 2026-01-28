@@ -43,13 +43,11 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-all duration-300 ${scrolled
-                ? 'bg-white/90 backdrop-blur-md shadow-sm py-2'
-                : 'bg-transparent py-4'
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-white shadow-md ${scrolled ? 'py-2' : 'py-4'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-3 items-center">
+                <div className="grid grid-cols-3 items-center h-16 md:h-20">
                     {/* Left: Menu Toggle + Brand */}
                     <div className="flex justify-start items-center gap-2">
                         <button
@@ -93,7 +91,7 @@ const Navbar = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60]"
+                            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[110]"
                         />
 
                         {/* Drawer */}
@@ -102,7 +100,7 @@ const Navbar = () => {
                             animate={{ x: 0 }}
                             exit={{ x: '-100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed top-0 left-0 bottom-0 w-[300px] sm:w-[350px] bg-white dark:bg-slate-900 shadow-2xl z-[70] overflow-y-auto"
+                            className="fixed top-0 left-0 bottom-0 w-[300px] sm:w-[350px] bg-white dark:bg-slate-900 shadow-2xl z-[120] overflow-y-auto"
                         >
                             <div className="flex flex-col h-full">
                                 {/* Drawer Header */}
