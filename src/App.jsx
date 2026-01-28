@@ -13,11 +13,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={
-          <Suspense fallback={<Loading />}>
-            <Home />
-          </Suspense>
-        } />
+        <Route index element={<Home />} />
         <Route path="about" element={<Suspense fallback={<Loading />}><About /></Suspense>} />
         <Route path="services" element={<Suspense fallback={<Loading />}><Services /></Suspense>} />
         <Route path="mission" element={<Suspense fallback={<Loading />}><Mission /></Suspense>} />
