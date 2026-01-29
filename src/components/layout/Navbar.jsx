@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import logo2 from '../../assets/logo2.webp';
 
 const Navbar = () => {
@@ -23,9 +23,13 @@ const Navbar = () => {
     const scrollThreshold = 100;
 
     // Logo Transitions
-    const logoX = useTransform(scrollY, [0, scrollThreshold], ["0%", isMobile ? "0%" : "-450%"]); // Moves to left on desktop, stays centered on mobile
-    const logoScale = useTransform(scrollY, [0, scrollThreshold], [1, 0.75]);
+    const baseLogoX = useTransform(scrollY, [0, scrollThreshold], ["0%", isMobile ? "0%" : "-450%"]);
+    const baseLogoScale = useTransform(scrollY, [0, scrollThreshold], [1, 0.75]);
     const logoY = useTransform(scrollY, [0, scrollThreshold], [0, 0]);
+
+    // Smooth physics versions
+    const logoX = useSpring(baseLogoX, { stiffness: 100, damping: 30, mass: 1 });
+    const logoScale = useSpring(baseLogoScale, { stiffness: 100, damping: 30, mass: 1 });
 
     // Brand & Menu Transitions (Fade out)
     const brandOpacity = useTransform(scrollY, [0, 60], [1, 0]);
@@ -148,8 +152,8 @@ const Navbar = () => {
                                         onMouseLeave={() => setIsHovered(false)}
                                     >
                                         <button className={`flex items-center gap-1 font-medium transition-colors ${location.pathname === link.path || link.dropdown?.some(sub => sub.path.split('#')[0] === location.pathname)
-                                                ? 'text-sky-600'
-                                                : 'text-slate-700 hover:text-sky-600'
+                                            ? 'text-sky-600'
+                                            : 'text-slate-700 hover:text-sky-600'
                                             }`}>
                                             {link.name} <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isHovered ? 'rotate-180' : ''}`} />
                                         </button>
@@ -180,8 +184,8 @@ const Navbar = () => {
                                         key={link.name}
                                         to={link.path}
                                         className={`font-medium transition-colors ${location.pathname === link.path
-                                                ? 'text-sky-600'
-                                                : 'text-slate-700 hover:text-sky-600'
+                                            ? 'text-sky-600'
+                                            : 'text-slate-700 hover:text-sky-600'
                                             }`}
                                     >
                                         {link.name}
