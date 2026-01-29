@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import logo2 from '../../assets/logo2.webp';
 
 const Navbar = () => {
@@ -9,7 +9,42 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const location = useLocation();
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
 
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const { scrollY } = useScroll();
+
+    // Animation mapping (0 to 100px scroll)
+    const scrollThreshold = 100;
+
+    // Logo Transitions
+    const logoX = useTransform(scrollY, [0, scrollThreshold], ["0%", isMobile ? "0%" : "-450%"]); // Moves to left on desktop, stays centered on mobile
+    const logoScale = useTransform(scrollY, [0, scrollThreshold], [1, 0.75]);
+    const logoY = useTransform(scrollY, [0, scrollThreshold], [0, 0]);
+
+    // Brand & Menu Transitions (Fade out)
+    const brandOpacity = useTransform(scrollY, [0, 60], [1, 0]);
+    const brandBlur = useTransform(scrollY, [0, 60], ["blur(0px)", "blur(12px)"]);
+    const brandX = useTransform(scrollY, [0, 60], [0, -30]);
+
+    // Horizontal Links Transitions (Fade in)
+    const linksOpacity = useTransform(scrollY, [60, scrollThreshold], [0, 1]);
+    const linksY = useTransform(scrollY, [60, scrollThreshold], [15, 0]);
+
+    // Background Transitions
+    const navPadding = useTransform(scrollY, [0, scrollThreshold], ["8px", "4px"]); // py-2 to py-1 (approx)
+    const navShadow = useTransform(
+        scrollY,
+        [0, scrollThreshold],
+        ["0px 1px 2px rgba(0,0,0,0)", "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -1px rgba(0,0,0,0.06)"]
+    );
+
+    // Keep the 'scrolled' boolean just for route change logic / other simple toggle needs if any
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -41,35 +76,122 @@ const Navbar = () => {
         { name: 'Mission', path: '/mission' },
     ];
 
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
-        <nav
-            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-white shadow-md ${scrolled ? 'py-1' : 'py-2'
-                }`}
+        <motion.nav
+            style={{
+                paddingTop: navPadding,
+                paddingBottom: navPadding,
+                boxShadow: navShadow
+            }}
+            className="fixed top-0 left-0 w-full z-[100] transition-colors duration-300 bg-white"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-3 items-center h-12 md:h-16">
-                    {/* Left: Menu Toggle + Brand */}
-                    <div className="flex justify-start items-center gap-2">
-                        <button
+                <div className="grid grid-cols-3 items-center h-12 md:h-16 relative overflow-visible">
+
+                    {/* LEFT SECTION: Hamburger & Brand (Top State) */}
+                    <div className="flex justify-start items-center gap-2 -ml-4 sm:-ml-6 lg:-ml-8 relative">
+                        {/* Hamburger - Always visible on mobile, fades on desktop scroll */}
+                        <motion.button
+                            style={{ opacity: typeof window !== 'undefined' && window.innerWidth < 1024 ? 1 : brandOpacity }}
                             onClick={() => setIsOpen(true)}
-                            className="p-2 -ml-2 text-slate-700 hover:text-sky-600 focus:outline-none transition-colors"
+                            className="p-2 text-slate-700 hover:text-sky-600 focus:outline-none transition-colors shrink-0 z-10"
                             aria-label="Open menu"
                         >
                             <Menu className="h-7 w-7" />
-                        </button>
-                        <Link to="/" className="text-xl md:text-2xl font-bold bg-gradient-to-r from-sky-500 to-green-500 bg-clip-text text-transparent whitespace-nowrap">
+                        </motion.button>
+
+                        {/* Brand Name - Fades/Blurs out */}
+                        <motion.span
+                            style={{
+                                opacity: brandOpacity,
+                                filter: brandBlur,
+                                x: brandX
+                            }}
+                            className="text-xl md:text-2xl font-bold bg-gradient-to-r from-sky-500 to-green-500 bg-clip-text text-transparent whitespace-nowrap pointer-events-none"
+                        >
                             Infra Tech
-                        </Link>
+                        </motion.span>
                     </div>
 
-                    {/* Center: Logo */}
-                    <div className="flex justify-center">
-                        <Link to="/" className="flex items-center">
-                            <img src={logo2} alt="Infra Tech Solution" className="h-12 md:h-16 w-auto" loading="lazy" />
-                        </Link>
+                    {/* CENTER SECTION: Logo & Horizonatal Links */}
+                    <div className="flex justify-center items-center h-full relative">
+                        {/* The Unified Animating Logo */}
+                        <motion.div
+                            style={{
+                                x: logoX,
+                                scale: logoScale,
+                                y: logoY
+                            }}
+                            className="absolute z-20"
+                        >
+                            <Link to="/" className="flex items-center">
+                                <img src={logo2} alt="Infra Tech Logo" className="h-12 md:h-16 w-auto" loading="lazy" />
+                            </Link>
+                        </motion.div>
+
+                        {/* Horizontal Links (Desktop only, emerge as logo moves) */}
+                        <motion.div
+                            style={{
+                                opacity: linksOpacity,
+                                y: linksY
+                            }}
+                            className="hidden lg:flex items-center gap-8 h-full"
+                        >
+                            {navLinks.map((link) => (
+                                link.dropdown ? (
+                                    <div
+                                        key={link.name}
+                                        className="relative h-full flex items-center"
+                                        onMouseEnter={() => setIsHovered(true)}
+                                        onMouseLeave={() => setIsHovered(false)}
+                                    >
+                                        <button className={`flex items-center gap-1 font-medium transition-colors ${location.pathname === link.path || link.dropdown?.some(sub => sub.path.split('#')[0] === location.pathname)
+                                                ? 'text-sky-600'
+                                                : 'text-slate-700 hover:text-sky-600'
+                                            }`}>
+                                            {link.name} <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isHovered ? 'rotate-180' : ''}`} />
+                                        </button>
+
+                                        <AnimatePresence>
+                                            {isHovered && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl py-4 border border-slate-100"
+                                                >
+                                                    {link.dropdown.map((sub) => (
+                                                        <Link
+                                                            key={sub.name}
+                                                            to={sub.path}
+                                                            className="block px-6 py-2 text-sm text-slate-600 hover:bg-sky-50 hover:text-sky-600 transition-colors"
+                                                        >
+                                                            {sub.name}
+                                                        </Link>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        key={link.name}
+                                        to={link.path}
+                                        className={`font-medium transition-colors ${location.pathname === link.path
+                                                ? 'text-sky-600'
+                                                : 'text-slate-700 hover:text-sky-600'
+                                            }`}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                )
+                            ))}
+                        </motion.div>
                     </div>
 
-                    {/* Right: Actions */}
+                    {/* RIGHT SECTION: Standard Actions */}
                     <div className="flex-1 flex justify-end">
                         <Link
                             to="/contact"
@@ -192,7 +314,8 @@ const Navbar = () => {
                     </>
                 )}
             </AnimatePresence>
-        </nav>
+        </motion.nav>
+
     );
 };
 
